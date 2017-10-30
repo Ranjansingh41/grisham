@@ -1,0 +1,18 @@
+jobs:
+  - name: check_node_architecture
+    type: runSh
+    architecture: x86_64
+    os: Ubuntu_16.04
+    steps:
+      - IN: scaler
+      - TASK:
+        - script: docker images | grep busybox
+        - script: uname -a
+        - script: df -h
+        - script: cat /etc/os-release
+    on_success:
+      - script: echo "successfully completed"      
+    on_failure:
+      - script: echo "Oops !!! something went wrong"      
+    flags:
+      - runSh 
