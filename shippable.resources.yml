@@ -1,0 +1,7 @@
+resources:
+  - name: scaler
+    type: replicas
+    version:
+      count: 1
+    flags:
+      - replicas
