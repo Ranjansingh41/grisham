@@ -11,6 +11,7 @@ jobs:
         - script: uname -a
         - script: df -h
         - script: cat /etc/os-release
+        - script: env
     on_success:
       - script: echo "successfully completed"      
     on_failure:
