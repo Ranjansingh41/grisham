@@ -27,6 +27,8 @@ jobs:
           script: 
             - echo "Checking container os version"
             - cat /etc/*-release
+            - df -h
+            - env
     on_success:
       - script: echo "successfully completed"      
     on_failure:
