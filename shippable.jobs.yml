@@ -1,17 +1,32 @@
 jobs:
-  - name: check_node_architecture
+  - name: execute_tasks_list
     type: runSh
-    architecture: x86_64
-    os: Ubuntu_16.04
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: true
     steps:
       - IN: reg_dh_ric03uec
       - IN: scaler
       - TASK:
-        - script: docker images | grep busybox
-        - script: uname -a
-        - script: df -h
-        - script: cat /etc/os-release
-        - script: env
+        name: host_check_OS
+        runtime:
+          container: false
+        script: 
+          - docker images | grep busybox
+          - script: uname -a
+          - script: df -h
+          - script: cat /etc/os-release
+          - script: env
+      - TASK:
+        name:  container_check_OS
+        runtime:
+          options:
+            imageName: drydock/u14pytall
+            imageTag: master
+        script: 
+          - echo "Checking container os version"
+          - cat /etc/*-release
     on_success:
       - script: echo "successfully completed"      
     on_failure:
