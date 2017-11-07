@@ -9,27 +9,27 @@ jobs:
       - IN: reg_dh_ric03uec
       - IN: scaler
       - TASK:
-        name: host_check_OS
-        runtime:
-          container: false
-        script: 
-          - docker images | grep busybox
-          - script: uname -a
-          - script: df -h
-          - script: cat /etc/os-release
-          - script: env
+          name: host_check_OS
+          runtime:
+            container: false
+          script: 
+            - docker images | grep busybox
+            - uname -a
+            - df -h
+            - cat /etc/os-release
+            - env
       - TASK:
-        name:  container_check_OS
-        runtime:
-          options:
-            imageName: drydock/u14pytall
-            imageTag: master
-        script: 
-          - echo "Checking container os version"
-          - cat /etc/*-release
+          name:  container_check_OS
+          runtime:
+            options:
+              imageName: drydock/u14pytall
+              imageTag: master
+          script: 
+            - echo "Checking container os version"
+            - cat /etc/*-release
     on_success:
       - script: echo "successfully completed"      
     on_failure:
       - script: echo "Oops !!! something went wrong"      
     flags:
-      - runSh 
+      - runSh
