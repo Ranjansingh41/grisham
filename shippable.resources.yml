@@ -11,3 +11,11 @@ resources:
     integration: reg_dh_ric03uec
     flags:
       - secrets
+
+  - name: image_version
+    type: image
+    integration: reg_dh_ric03uec
+    pointer:
+      sourceName: "ric03uec/grisham"
+    seed:
+      versionName: auto
