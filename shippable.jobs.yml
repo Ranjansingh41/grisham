@@ -38,7 +38,7 @@ jobs:
           script: 
             - echo "sleeping for a while..."
             - sleep 60
-            
+      - OUT: image_version
     on_success:
       - script: echo "successfully completed"      
     on_failure:
