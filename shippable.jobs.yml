@@ -29,6 +29,16 @@ jobs:
             - cat /etc/*-release
             - df -h
             - env
+            
+      - TASK:
+          runtime:
+            options:
+              imageName: drydock/u14pytall
+              imageTag: master
+          script: 
+            - echo "sleeping for a while..."
+            - sleep 60
+            
     on_success:
       - script: echo "successfully completed"      
     on_failure:
