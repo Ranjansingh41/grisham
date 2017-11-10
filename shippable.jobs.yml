@@ -26,6 +26,9 @@ jobs:
           name:  container_check_OS
           runtime:
             options:
+              env:
+                - CONTAINER_ENV3: VALUE3
+                - CONTAINER_ENV4: VALUE4
               imageName: drydock/u14pytall
               imageTag: master
           script: 
