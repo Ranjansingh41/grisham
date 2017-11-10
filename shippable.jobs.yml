@@ -42,6 +42,7 @@ jobs:
             options:
               imageName: drydock/u14pytall
               imageTag: master
+              pull: true
           script: 
             - echo "sleeping for a while..."
             - sleep 60
