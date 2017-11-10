@@ -12,6 +12,9 @@ jobs:
           name: host_check_OS
           runtime:
             container: false
+            options:
+              - ENV1: VALUE1
+              - ENV2: VALUE2
           script: 
             - docker images | grep busybox
             - uname -a
@@ -58,6 +61,10 @@ jobs:
       - IN: execute_tasks_list
       - TASK:
           name: host_check_OS
+          runtime:
+            options:
+              ENV5: VALUE5
+              ENV6: VALUE6
           script: 
             - uname -a
             - df -h
