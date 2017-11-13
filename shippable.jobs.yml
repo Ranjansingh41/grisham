@@ -7,7 +7,7 @@ jobs:
       container: true
     steps:
       - IN: reg_dh_ric03uec
-      - IN: scaler
+      - IN: sample_python_runCI
       - TASK:
           name: host_check_OS
           runtime:
@@ -62,7 +62,6 @@ jobs:
       container: false
     steps:
       - IN: reg_dh_ric03uec
-      - IN: scaler
       - IN: execute_tasks_list
       - TASK:
           name: host_check_OS
