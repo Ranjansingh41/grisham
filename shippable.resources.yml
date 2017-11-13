@@ -16,3 +16,7 @@ resources:
   - name: slack
     type: notification
     integration: slack-ric03uec
+    pointer:
+      recipients:
+        - "#builds"
+
