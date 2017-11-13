@@ -12,3 +12,10 @@ resources:
       sourceName: "ric03uec/grisham"
     seed:
       versionName: auto
+
+  - name: slack
+    type: notification
+    integration: slack-ric03uec
+    pointer:
+      recipients:
+        - "@ric03uec"
