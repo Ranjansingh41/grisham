@@ -1,6 +1,8 @@
 jobs:
   - name: execute_tasks_list
     type: runSh
+    on_start:   
+      - NOTIFY: slack
     runtime:
       architecture: x86_64
       os: Ubuntu_16.04
