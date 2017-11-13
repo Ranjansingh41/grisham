@@ -75,6 +75,8 @@ jobs:
             - uname -a
             - df -h
             - cat /etc/os-release
+            - sudo docker info
+            - sudo docker images
             - this is an invalid command, should fail            
     on_success:
       - script: echo "successfully completed"      
