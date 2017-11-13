@@ -1,11 +1,4 @@
 resources:
-  - name: scaler
-    type: replicas
-    version:
-      count: 1
-    flags:
-      - replicas
-   
   - name: reg_dh_ric03uec
     type: integration
     integration: reg_dh_ric03uec
