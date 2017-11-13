@@ -49,8 +49,10 @@ jobs:
       - OUT: image_version
     on_success:
       - script: echo "successfully completed"      
+      - NOTIFY: slack
     on_failure:
       - script: echo "Oops !!! something went wrong"      
+      - NOTIFY: slack
     flags:
       - runSh
 
@@ -79,7 +81,9 @@ jobs:
             - this is an invalid command, should fail            
     on_success:
       - script: echo "successfully completed"      
+      - NOTIFY: slack
     on_failure:
       - script: echo "Oops !!! something went wrong"      
+      - NOTIFY: slack
     flags:
       - runSh
