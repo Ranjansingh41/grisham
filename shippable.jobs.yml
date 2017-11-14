@@ -79,7 +79,7 @@ jobs:
             - uname -a
             - df -h
             - sudo docker images
-            - cp -vr $BUILD_DIR/IN/global_state/job_state.txt .
+            - cp -vr $BUILD_DIR/IN/global_state/state/job_state.txt .
             - cat job_state.txt
       - OUT: global_state
     flags:
@@ -102,7 +102,7 @@ jobs:
             - uname -a
             - df -h
             - sudo docker images
-            - cp -vr $BUILD_DIR/IN/global_state/job_state.txt .
+            - cp -vr $BUILD_DIR/IN/global_state/state/job_state.txt .
             - cat job_state.txt
       - OUT: global_state
     flags:
