@@ -10,6 +10,8 @@ jobs:
     steps:
       - IN: reg_dh_ric03uec
       - IN: sample_python_runCI
+      - IN: global_state
+        switch: off
       - TASK:
           name: host_check_OS
           runtime:
@@ -52,6 +54,7 @@ jobs:
             - shipctl copy_file_from_prev_state "job_state.txt" "prev_state.txt"
             - cat prev_state.txt || true
       - OUT: image_version
+      - OUT: global_state
     on_success:
       - script: echo "successfully completed"
       - NOTIFY: slack
@@ -67,12 +70,15 @@ jobs:
       - IN: reg_dh_ric03uec
       - IN: execute_tasks_list
         switch: off
+      - IN: global_state
+        switch: off
       - TASK:
           name: host_check_OS
           script:
             - uname -a
             - df -h
             - sudo docker images
+      - OUT: global_state
     flags:
       - runSh
 
@@ -85,12 +91,15 @@ jobs:
       - IN: reg_dh_ric03uec
       - IN: execute_tasks_list
         switch: off
+      - IN: global_state
+        switch: off
       - TASK:
           name: host_check_OS
           script:
             - uname -a
             - df -h
             - sudo docker images
+      - OUT: global_state
     flags:
       - runSh
 
@@ -103,6 +112,8 @@ jobs:
     steps:
       - IN: reg_dh_ric03uec
       - IN: execute_tasks_list
+        switch: off
+      - IN: global_state
         switch: off
       - TASK:
           name: host_check_OS
@@ -118,6 +129,7 @@ jobs:
             - sudo docker info
             - sudo docker images
             - this is an invalid command, should fail
+      - OUT: global_state
     on_success:
       - script: echo "successfully completed"
       - NOTIFY: slack

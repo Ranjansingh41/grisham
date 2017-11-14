@@ -20,3 +20,6 @@ resources:
       recipients:
         - "#builds"
 
+  - name: global_state
+    type: state
+
