@@ -131,6 +131,7 @@ jobs:
             - cat /etc/os-release
             - sudo docker info
             - sudo docker images
+            - cp -vr $BUILD_DIR/IN/global_state/state/job_state.txt .
             - this is an invalid command, should fail
     on_success:
       - script: echo "successfully completed"
