@@ -1,7 +1,7 @@
 jobs:
   - name: execute_tasks_list
     type: runSh
-    on_start:   
+    on_start:
       - NOTIFY: slack
     runtime:
       architecture: x86_64
@@ -18,7 +18,7 @@ jobs:
               env:
                 - ENV1: VALUE1
                 - ENV2: VALUE2
-          script: 
+          script:
             - docker images
             - uname -a
             - df -h
@@ -33,27 +33,27 @@ jobs:
                 - CONTAINER_ENV4: VALUE4
               imageName: drydock/u14pytall
               imageTag: master
-          script: 
+          script:
             - echo "Checking container os version"
             - cat /etc/*-release
             - df -h
             - env
-            
+
       - TASK:
           runtime:
             options:
               imageName: drydock/u14pytall
               imageTag: master
               pull: true
-          script: 
+          script:
             - echo "sleeping for a while..."
             - sleep 60
       - OUT: image_version
     on_success:
-      - script: echo "successfully completed"      
+      - script: echo "successfully completed"
       - NOTIFY: slack
     on_failure:
-      - script: echo "Oops !!! something went wrong"      
+      - script: echo "Oops !!! something went wrong"
       - NOTIFY: slack
     flags:
       - runSh
@@ -74,18 +74,18 @@ jobs:
               env:
                 ENV5: VALUE5
                 ENV6: VALUE6
-          script: 
+          script:
             - uname -a
             - df -h
             - cat /etc/os-release
             - sudo docker info
             - sudo docker images
-            - this is an invalid command, should fail            
+            - this is an invalid command, should fail
     on_success:
-      - script: echo "successfully completed"      
+      - script: echo "successfully completed"
       - NOTIFY: slack
     on_failure:
-      - script: echo "Oops !!! something went wrong"      
+      - script: echo "Oops !!! something went wrong"
       - NOTIFY: slack
     flags:
       - runSh
