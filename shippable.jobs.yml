@@ -2,6 +2,7 @@ jobs:
   - name: non-grisham-job
     type: runSh
     steps:
+      - IN: sample_python_runCI
       - IN: reg_dh_ric03uec
         switch: off
       - IN: global_state
