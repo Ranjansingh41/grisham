@@ -53,6 +53,7 @@ jobs:
             - sleep 30
             - shipctl copy_file_from_prev_state "job_state.txt" "prev_state.txt"
             - cat prev_state.txt || true
+            - cp -vr job_state.txt $BUILD_DIR/OUT/global_state/state/
       - OUT: image_version
       - OUT: global_state
     on_success:
@@ -78,6 +79,8 @@ jobs:
             - uname -a
             - df -h
             - sudo docker images
+            - cp -vr $BUILD_DIR/IN/global_state/job_state.txt .
+            - cat job_state.txt
       - OUT: global_state
     flags:
       - runSh
@@ -99,6 +102,8 @@ jobs:
             - uname -a
             - df -h
             - sudo docker images
+            - cp -vr $BUILD_DIR/IN/global_state/job_state.txt .
+            - cat job_state.txt
       - OUT: global_state
     flags:
       - runSh
