@@ -101,6 +101,7 @@ jobs:
     steps:
       - IN: reg_dh_ric03uec
       - IN: execute_tasks_list
+        switch: off
       - TASK:
           name: host_check_OS
           runtime:
