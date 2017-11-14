@@ -132,7 +132,6 @@ jobs:
             - sudo docker info
             - sudo docker images
             - this is an invalid command, should fail
-      - OUT: global_state
     on_success:
       - script: echo "successfully completed"
       - NOTIFY: slack
