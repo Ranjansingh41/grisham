@@ -81,7 +81,6 @@ jobs:
             - sudo docker images
             - cp -vr $BUILD_DIR/IN/global_state/state/job_state.txt .
             - cat job_state.txt
-      - OUT: global_state
     flags:
       - runSh
 
@@ -104,7 +103,6 @@ jobs:
             - sudo docker images
             - cp -vr $BUILD_DIR/IN/global_state/state/job_state.txt .
             - cat job_state.txt
-      - OUT: global_state
     flags:
       - runSh
 
