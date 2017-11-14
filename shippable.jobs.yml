@@ -60,9 +60,6 @@ jobs:
 
   - name: no_runtime
     type: runSh
-    runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
     steps:
       - IN: reg_dh_ric03uec
       - IN: execute_tasks_list
