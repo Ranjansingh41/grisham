@@ -58,6 +58,40 @@ jobs:
     flags:
       - runSh
 
+  - name: no_runtime
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+    steps:
+      - IN: reg_dh_ric03uec
+      - IN: execute_tasks_list
+      - TASK:
+          name: host_check_OS
+          script:
+            - uname -a
+            - df -h
+            - sudo docker images
+    flags:
+      - runSh
+
+  - name: job_runtime
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+    steps:
+      - IN: reg_dh_ric03uec
+      - IN: execute_tasks_list
+      - TASK:
+          name: host_check_OS
+          script:
+            - uname -a
+            - df -h
+            - sudo docker images
+    flags:
+      - runSh
+
   - name: failed_job
     type: runSh
     runtime:
