@@ -38,7 +38,8 @@ jobs:
             - cat /etc/*-release
             - df -h
             - env
-
+            - echo "$BUILD_NUMBER" > job_state.txt
+            - shipctl copy_file_to_state "job_state.txt"
       - TASK:
           runtime:
             options:
@@ -48,6 +49,8 @@ jobs:
           script:
             - echo "sleeping for a while..."
             - sleep 60
+            - shipctl copy_file_from_prev_state "job_state.txt" "prev_state.txt"
+            - cat prev_state.txt || true
       - OUT: image_version
     on_success:
       - script: echo "successfully completed"
