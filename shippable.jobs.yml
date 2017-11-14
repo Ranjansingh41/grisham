@@ -1,4 +1,23 @@
 jobs:
+  - name: non-grisham-job
+    type: runSh
+    steps:
+      - IN: reg_dh_ric03uec
+        switch: off
+      - IN: global_state
+        switch: off
+      - TASK:
+        - script: echo 'This is task in old format'
+        - script: ls -alh
+        - script: env
+        - script: df -h
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+    flags:
+      - runsh
+
   - name: execute_tasks_list
     type: runSh
     on_start:
