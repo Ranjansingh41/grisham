@@ -23,3 +23,10 @@ resources:
   - name: global_state
     type: state
 
+  - name: nginx-img
+    type: image
+    integration: reg-dh-ric03uec
+    pointer:
+      sourceName: library/nginx
+    seed:
+      versionName: latest

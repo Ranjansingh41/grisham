@@ -93,6 +93,8 @@ jobs:
         switch: off
       - IN: global_state
         switch: off
+      - IN: nginx-img
+        pull: true
       - TASK:
           name: host_check_OS
           script:
@@ -113,6 +115,8 @@ jobs:
       - IN: reg_dh_ric03uec
       - IN: execute_tasks_list
         switch: off
+      - IN: nginx-img
+        pull: false
       - IN: global_state
         switch: off
       - TASK:
