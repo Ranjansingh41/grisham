@@ -165,7 +165,7 @@ jobs:
   - name: aarch64_host_job
     type: runSh
     runtime:
-      architecture: aarch64
+      architecture: x86_64
       os: Ubuntu_16.04
       container: false
     steps:
