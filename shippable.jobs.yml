@@ -176,8 +176,6 @@ jobs:
       - IN: sample_python_runCI
       - IN: reg_dh_ric03uec
         switch: off
-      - IN: global_state
-        switch: off
       - TASK:
           name: check host architecture
           runtime:
