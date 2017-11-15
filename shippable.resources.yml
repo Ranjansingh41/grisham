@@ -25,7 +25,7 @@ resources:
 
   - name: nginx-img
     type: image
-    integration: reg-dh-ric03uec
+    integration: reg_dh_ric03uec
     pointer:
       sourceName: library/nginx
     seed:
