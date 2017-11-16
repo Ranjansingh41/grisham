@@ -32,6 +32,8 @@ jobs:
       - TASK:
           name: docker build on the host
           script:
+            - ls -alh $BUILD_DIR/IN/
+            - ls -alh $BUILD_DIR/IN/sample_python_ciRepo
             - pushd $BUILD_DIR/IN/sample_python_ciRepo/gitRepo
             - ls -alh
             - popd
