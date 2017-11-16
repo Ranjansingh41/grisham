@@ -257,7 +257,7 @@ jobs:
       - runsh
 
   - name: deploy_ec2_ubuntu
-    type: runsh
+    type: runSh
     runtime:
       architecture: x86_64
       os: Ubuntu_16.04
