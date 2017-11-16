@@ -246,7 +246,7 @@ jobs:
             - export IMAGE_NAME=ric03uec/sample_python:grisham.container.$BUILD_NUMBER
             - docker build -t $IMAGE_NAME .
             - docker images
-            - shipctl get_integration_resource_field "reg_db_ric03uec" "username"
+            - shipctl get_integration_resource_field "reg_dh_ric03uec" "username"
             - shipctl post_resource_state "image_sample_python" "versionName" "$IMAGE_NAME"
             - popd
       - OUT: image_sample_python
@@ -269,9 +269,6 @@ jobs:
       - TASK:
           name: deploy the image to EC2 on ubuntu host
           script:
-            - export IMAGE_VERSION=foo
-            - echo "Deploying: $IMAGE_VERSION"
-            - sleep 10
-            - echo "Deployment done"
+            - ls -atlh
     on_failure:
       - script: echo 'deployment to ec2 failed'
