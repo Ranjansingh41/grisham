@@ -34,8 +34,10 @@ jobs:
           script:
             - pushd $BUILD_DIR/IN/repo_sample_python/gitRepo
             - ls -atlh
-            - docker build -t ric03uec/sample_python:grisham .
+            - export IMAGE_NAME=ric03uec/sample_python:grisham.host.$BUILD_NUMBER
+            - docker build -t $IMAGE_NAME .
             - docker images
+            - shipctl post_resource_state "image_sample_python" "versionName" "$IMAGE_NAME"
             - popd
       - OUT: image_sample_python
     on_success:
@@ -60,11 +62,10 @@ jobs:
           script:
             - pushd $BUILD_DIR/IN/repo_sample_python/gitRepo
             - ls -atlh
-            - export IMAGE_NAME=ric03uec/sample_python:grisham.$BUILD_NUMBER
+            - export IMAGE_NAME=ric03uec/sample_python:grisham.container.$BUILD_NUMBER
             - docker build -t $IMAGE_NAME .
             - docker images
-            - shipctl post_resource_state "image_sample_python" "VERSION" "$IMAGE_NAME"
-            - env
+            - shipctl post_resource_state "image_sample_python" "versionName" "$IMAGE_NAME"
             - popd
       - OUT: image_sample_python
     on_success:
