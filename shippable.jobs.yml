@@ -250,7 +250,6 @@ jobs:
             - docker images
             - ACCESS_KEY=$(shipctl get_integration_resource_field "aws_ric03uec" "accesskey")
             - SECRET_KEY=$(shipctl get_integration_resource_field "aws_ric03uec" "secretkey")
-            - echo $ACCESS_KEY && echo $SECRET_KEY
             - shipctl post_resource_state "image_sample_python" "versionName" "$IMAGE_NAME"
             - env
             - popd
@@ -275,6 +274,8 @@ jobs:
           name: deploy the image to EC2 on ubuntu host
           script:
             - ls -atlh
+            - IMAGE_VERSION=$(shipctl get_resource_version_number "image_sample_python")
+            - echo $IMAGE_NAME
             - export IMAGE_NAME=foo
             - echo "deploying image $IMAGE_NAME"
             - sleep 10
