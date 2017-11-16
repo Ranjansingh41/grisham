@@ -274,5 +274,8 @@ jobs:
           name: deploy the image to EC2 on ubuntu host
           script:
             - ls -atlh
+            - export IMAGE_NAME=foo
+            - echo "deploying image $IMAGE_NAME"
+            - sleep 10
     on_failure:
       - script: echo 'deployment to ec2 failed'
