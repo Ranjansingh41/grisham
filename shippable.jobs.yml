@@ -238,6 +238,8 @@ jobs:
         switch: off
       - IN: reg_dh_ric03uec
         switch: off
+      - IN: aws_ric03uec
+        switch: off
       - TASK:
           name: docker build in a container
           script:
@@ -246,7 +248,10 @@ jobs:
             - export IMAGE_NAME=ric03uec/sample_python:grisham.container.$BUILD_NUMBER
             - docker build -t $IMAGE_NAME .
             - docker images
+            - env
             - shipctl get_integration_resource_field "reg_dh_ric03uec" "username"
+            - shipctl get_integration_resource_field "aws_ric03uec" "accesskey"
+            - shipctl get_integration_resource_field "aws_ric03uec" "secretAccessKey"
             - shipctl post_resource_state "image_sample_python" "versionName" "$IMAGE_NAME"
             - popd
       - OUT: image_sample_python

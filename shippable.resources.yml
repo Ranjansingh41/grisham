@@ -12,6 +12,12 @@ resources:
     flags:
       - secrets
 
+  - name: aws_ric03uec
+    type: integration
+    integration: aws-ric03uec
+    flags:
+      - secrets
+
   - name: image_sample_python
     type: image
     integration: reg_dh_ric03uec
