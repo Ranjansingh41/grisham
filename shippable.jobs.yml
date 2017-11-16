@@ -266,11 +266,11 @@ jobs:
       - IN: reg_dh_ric03uec
         switch: off
       - TASK:
-        name: deploy the image to EC2 on ubuntu host
-        script:
-          - export IMAGE_VERSION=foo
-          - echo "Deploying: $IMAGE_VERSION"
-          - sleep 10
-          - echo "Deployment done"
+          name: deploy the image to EC2 on ubuntu host
+          script:
+            - export IMAGE_VERSION=foo
+            - echo "Deploying: $IMAGE_VERSION"
+            - sleep 10
+            - echo "Deployment done"
     on_failure:
       - script: echo 'deployment to ec2 failed'
