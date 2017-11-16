@@ -63,7 +63,7 @@ jobs:
             - export IMAGE_NAME=ric03uec/sample_python:grisham.$BUILD_NUMBER
             - docker build -t $IMAGE_NAME .
             - docker images
-            - echo versionName=$IMAGE_NAME
+            - echo versionName=$IMAGE_NAME > "$IMAGE_SAMPLE_PYTHON_STATE"
             - env
             - popd
       - OUT: image_sample_python
