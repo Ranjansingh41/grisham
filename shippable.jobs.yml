@@ -32,10 +32,9 @@ jobs:
       - TASK:
           name: docker build on the host
           script:
-            - ls -alh $BUILD_DIR/IN/
-            - ls -alh $BUILD_DIR/IN/sample_python_ciRepo
-            - pushd $BUILD_DIR/IN/sample_python_ciRepo/gitRepo
-            - ls -alh
+            - pushd $BUILD_DIR/IN/sample_python_ciRepo/ciRepo
+            - docker build -t ric03uec/sample_python:grisham .
+            - docker images
             - popd
     on_success:
       - script: echo 'succeeded'
@@ -56,8 +55,9 @@ jobs:
         switch: off
       - TASK:
           script:
-            - pushd $BUILD_DIR/IN/sample_python_ciRepo/gitRepo
-            - ls -alh
+            - pushd $BUILD_DIR/IN/sample_python_ciRepo/ciRepo
+            - docker build -t ric03uec/sample_python:grisham .
+            - docker images
             - popd
     on_success:
       - script: echo 'succeeded'
