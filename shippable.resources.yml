@@ -12,11 +12,11 @@ resources:
     flags:
       - secrets
 
-  - name: image_version
+  - name: image_sample_python
     type: image
     integration: reg_dh_ric03uec
     pointer:
-      sourceName: "ric03uec/grisham"
+      sourceName: "ric03uec/sample_python"
     seed:
       versionName: auto
 

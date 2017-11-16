@@ -37,6 +37,7 @@ jobs:
             - docker build -t ric03uec/sample_python:grisham .
             - docker images
             - popd
+      - OUT: image_sample_python
     on_success:
       - script: echo 'succeeded'
     on_failure:
@@ -59,9 +60,13 @@ jobs:
           script:
             - pushd $BUILD_DIR/IN/repo_sample_python/gitRepo
             - ls -atlh
-            - docker build -t ric03uec/sample_python:grisham .
+            - export IMAGE_NAME=ric03uec/sample_python:grisham.$BUILD_NUMBER
+            - docker build -t $IMAGE_NAME .
             - docker images
+            - echo versionName=$IMAGE_NAME
+            - env
             - popd
+      - OUT: image_sample_python
     on_success:
       - script: echo 'succeeded'
     on_failure:
@@ -124,7 +129,6 @@ jobs:
             - shipctl copy_file_from_prev_state "job_state.txt" "prev_state.txt"
             - cat prev_state.txt || true
             - cp -vr job_state.txt $BUILD_DIR/OUT/global_state/state/
-      - OUT: image_version
       - OUT: global_state
     on_success:
       - script: echo "successfully completed"
