@@ -33,6 +33,7 @@ jobs:
           name: docker build on the host
           script:
             - pushd $BUILD_DIR/IN/sample_python_ciRepo/ciRepo
+            - ls -atlh
             - docker build -t ric03uec/sample_python:grisham .
             - docker images
             - popd
@@ -56,6 +57,7 @@ jobs:
       - TASK:
           script:
             - pushd $BUILD_DIR/IN/sample_python_ciRepo/ciRepo
+            - ls -atlh
             - docker build -t ric03uec/sample_python:grisham .
             - docker images
             - popd
