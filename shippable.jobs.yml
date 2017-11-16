@@ -26,13 +26,13 @@ jobs:
       os: Ubuntu_16.04
       container: false
     steps:
-      - IN: sample_python_ciRepo
+      - IN: repo_sample_python
       - IN: reg_dh_ric03uec
         switch: off
       - TASK:
           name: docker build on the host
           script:
-            - pushd $BUILD_DIR/IN/sample_python_ciRepo/ciRepo
+            - pushd $BUILD_DIR/IN/repo_sample_python/ciRepo
             - ls -atlh
             - docker build -t ric03uec/sample_python:grisham .
             - docker images
@@ -50,13 +50,13 @@ jobs:
       architecture: x86_64
       os: Ubuntu_16.04
     steps:
-      - IN: sample_python_ciRepo
+      - IN: repo_sample_python
         switch: off
       - IN: reg_dh_ric03uec
         switch: off
       - TASK:
           script:
-            - pushd $BUILD_DIR/IN/sample_python_ciRepo/ciRepo
+            - pushd $BUILD_DIR/IN/repo_sample_python/ciRepo
             - ls -atlh
             - docker build -t ric03uec/sample_python:grisham .
             - docker images

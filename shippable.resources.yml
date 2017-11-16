@@ -1,4 +1,11 @@
 resources:
+  - name: repo_sample_python
+    type: gitRepo
+    integration: gh-ric03uec
+    pointer:
+      sourceName: ric03uecS/sample_python
+      branch: master
+
   - name: reg_dh_ric03uec
     type: integration
     integration: reg_dh_ric03uec
