@@ -268,7 +268,7 @@ jobs:
       - TASK:
           name: deploy the image to EC2 on ubuntu host
           script:
-            - export IMAGE_VERSION=$(shipctl get_resource_version_name "image_sample_python")
+            - IMAGE_VERSION=$(shipctl get_resource_version_name 'image_sample_python')
             - echo "Deploying: $IMAGE_VERSION"
             - sleep 10
             - echo "Deployment done"
