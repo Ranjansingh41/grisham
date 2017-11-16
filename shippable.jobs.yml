@@ -250,6 +250,7 @@ jobs:
             - docker images
             - ACCESS_KEY=$(shipctl get_integration_resource_field "aws_ric03uec" "accesskey")
             - SECRET_KEY=$(shipctl get_integration_resource_field "aws_ric03uec" "secretkey")
+            - echo $ACCESS_KEY && echo $SECRET_KEY
             - shipctl post_resource_state "image_sample_python" "versionName" "$IMAGE_NAME"
             - env
             - popd
