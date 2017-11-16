@@ -19,61 +19,6 @@ jobs:
     flags:
       - runsh
 
-  - name: docker_build_host
-    type: runSh
-    runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
-      container: false
-    steps:
-      - IN: repo_sample_python
-      - IN: reg_dh_ric03uec
-        switch: off
-      - TASK:
-          name: docker build on the host
-          script:
-            - pushd $BUILD_DIR/IN/repo_sample_python/gitRepo
-            - ls -atlh
-            - export IMAGE_NAME=ric03uec/sample_python:grisham.host.$BUILD_NUMBER
-            - docker build -t $IMAGE_NAME .
-            - docker images
-            - popd
-      - OUT: image_sample_python
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
-    flags:
-      - runsh
-
-  - name: docker_build_container
-    type: runSh
-    runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
-    steps:
-      - IN: repo_sample_python
-        switch: off
-      - IN: reg_dh_ric03uec
-        switch: off
-      - TASK:
-          name: docker build in a container
-          script:
-            - pushd $BUILD_DIR/IN/repo_sample_python/gitRepo
-            - ls -atlh
-            - export IMAGE_NAME=ric03uec/sample_python:grisham.container.$BUILD_NUMBER
-            - docker build -t $IMAGE_NAME .
-            - docker images
-            - shipctl post_resource_state "image_sample_python" "versionName" "$IMAGE_NAME"
-            - popd
-      - OUT: image_sample_python
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
-    flags:
-      - runsh
-
   - name: execute_tasks_list
     type: runSh
     on_start:
@@ -255,3 +200,77 @@ jobs:
       - script: 'echo ''Failed job .... :('''
     always:
       - script: echo 'this will always run'
+
+  - name: docker_build_host
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - IN: repo_sample_python
+      - IN: reg_dh_ric03uec
+        switch: off
+      - TASK:
+          name: docker build on the host
+          script:
+            - pushd $BUILD_DIR/IN/repo_sample_python/gitRepo
+            - ls -atlh
+            - export IMAGE_NAME=ric03uec/sample_python:grisham.host.$BUILD_NUMBER
+            - docker build -t $IMAGE_NAME .
+            - docker images
+            - popd
+      - OUT: image_sample_python
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+    flags:
+      - runsh
+
+  - name: docker_build_container
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+    steps:
+      - IN: repo_sample_python
+        switch: off
+      - IN: reg_dh_ric03uec
+        switch: off
+      - TASK:
+          name: docker build in a container
+          script:
+            - pushd $BUILD_DIR/IN/repo_sample_python/gitRepo
+            - ls -atlh
+            - export IMAGE_NAME=ric03uec/sample_python:grisham.container.$BUILD_NUMBER
+            - docker build -t $IMAGE_NAME .
+            - docker images
+            - shipctl post_resource_state "image_sample_python" "versionName" "$IMAGE_NAME"
+            - popd
+      - OUT: image_sample_python
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+    flags:
+      - runsh
+
+  - name: deploy_ec2_ubuntu
+    type: runsh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+    steps:
+      - IN: image_sample_python
+      - IN: reg_dh_ric03uec
+        switch: off
+      - TASK:
+          name: deploy the image to EC2 on ubuntu host
+          script:
+            - export IMAGE_VERSION=$(shipctl get_resource_version_name "image_sample_python")
+            - echo "Deploying: $IMAGE_VERSION"
+            - sleep 10
+            - echo "Deployment done"
+    on_failure:
+      - script: echo 'deployment to ec2 failed'
