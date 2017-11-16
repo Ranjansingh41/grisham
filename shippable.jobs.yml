@@ -247,8 +247,8 @@ jobs:
             - ls -atlh
             - export IMAGE_NAME=ric03uec/sample_python:grisham.container.$BUILD_NUMBER
             - docker build -t $IMAGE_NAME .
-            - docker images
             - env
+            - docker images
             - shipctl get_integration_resource_field "reg_dh_ric03uec" "username"
             - shipctl get_integration_resource_field "aws_ric03uec" "accesskey"
             - shipctl get_integration_resource_field "aws_ric03uec" "secretAccessKey"
