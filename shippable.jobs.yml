@@ -246,6 +246,7 @@ jobs:
             - export IMAGE_NAME=ric03uec/sample_python:grisham.container.$BUILD_NUMBER
             - docker build -t $IMAGE_NAME .
             - docker images
+            - shipctl get_integration_resource_field "reg_db_ric03uec" "username"
             - shipctl post_resource_state "image_sample_python" "versionName" "$IMAGE_NAME"
             - popd
       - OUT: image_sample_python
