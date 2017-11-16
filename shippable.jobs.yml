@@ -30,11 +30,11 @@ jobs:
       - IN: reg_dh_ric03uec
         switch: off
       - TASK:
-        name: docker build on the host
-        script:
-          - pushd $BUILD_DIR/IN/sample_python_ciRepo/gitRepo
-          - ls -alh
-          - popd
+          name: docker build on the host
+          script:
+            - pushd $BUILD_DIR/IN/sample_python_ciRepo/gitRepo
+            - ls -alh
+            - popd
     on_success:
       - script: echo 'succeeded'
     on_failure:
@@ -53,10 +53,10 @@ jobs:
       - IN: reg_dh_ric03uec
         switch: off
       - TASK:
-        script:
-          - pushd $BUILD_DIR/IN/sample_python_ciRepo/gitRepo
-          - ls -alh
-          - popd
+          script:
+            - pushd $BUILD_DIR/IN/sample_python_ciRepo/gitRepo
+            - ls -alh
+            - popd
     on_success:
       - script: echo 'succeeded'
     on_failure:
