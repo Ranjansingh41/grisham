@@ -1,5 +1,5 @@
 jobs:
-  - name: non-grisham-job
+  - name: non_grisham_job
     type: runSh
     steps:
       - IN: sample_python_runCI
@@ -12,6 +12,51 @@ jobs:
         - script: ls -alh
         - script: env
         - script: df -h
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+    flags:
+      - runsh
+
+  - name: docker_build_host
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - IN: sample_python_ciRepo
+      - IN: reg_dh_ric03uec
+        switch: off
+      - TASK:
+        name: docker build on the host
+        script:
+          - pushd $BUILD_DIR/IN/sample_python_ciRepo/gitRepo
+          - ls -alh
+          - popd
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+    flags:
+      - runsh
+
+  - name: docker_build_container
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+    steps:
+      - IN: sample_python_ciRepo
+        switch: off
+      - IN: reg_dh_ric03uec
+        switch: off
+      - TASK:
+        script:
+          - pushd $BUILD_DIR/IN/sample_python_ciRepo/gitRepo
+          - ls -alh
+          - popd
     on_success:
       - script: echo 'succeeded'
     on_failure:
@@ -85,7 +130,7 @@ jobs:
     flags:
       - runSh
 
-  - name: no_runtime
+  - name: job_with_no_runtime
     type: runSh
     steps:
       - IN: reg_dh_ric03uec
@@ -106,7 +151,7 @@ jobs:
     flags:
       - runSh
 
-  - name: job_runtime
+  - name: job_with_runtime
     type: runSh
     runtime:
       architecture: x86_64
