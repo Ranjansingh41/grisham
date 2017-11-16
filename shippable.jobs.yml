@@ -32,7 +32,7 @@ jobs:
       - TASK:
           name: docker build on the host
           script:
-            - pushd $BUILD_DIR/IN/repo_sample_python/ciRepo
+            - pushd $BUILD_DIR/IN/repo_sample_python/gitRepo
             - ls -atlh
             - docker build -t ric03uec/sample_python:grisham .
             - docker images
@@ -56,7 +56,7 @@ jobs:
         switch: off
       - TASK:
           script:
-            - pushd $BUILD_DIR/IN/repo_sample_python/ciRepo
+            - pushd $BUILD_DIR/IN/repo_sample_python/gitRepo
             - ls -atlh
             - docker build -t ric03uec/sample_python:grisham .
             - docker images
