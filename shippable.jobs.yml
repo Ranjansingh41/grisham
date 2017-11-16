@@ -55,6 +55,7 @@ jobs:
       - IN: reg_dh_ric03uec
         switch: off
       - TASK:
+          name: docker build in a container
           script:
             - pushd $BUILD_DIR/IN/repo_sample_python/gitRepo
             - ls -atlh
