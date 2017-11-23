@@ -165,6 +165,23 @@ jobs:
     flags:
       - runSh
 
+  name: x86_64_macOS
+  type: runSh
+  runtime:
+    architecture: x86_64
+    os: macOS_10.12
+    container: false
+  steps:
+    - IN: sample_python_runCI
+    - IN: reg_dh_ric03uec
+      switch: off
+    - TASK:
+        name: mac-says-hello
+        script:
+          - echo "hello"
+          - uname -a
+          - /usr/bin/xcodebuild -version
+
   - name: aarch64_host_job
     type: runSh
     runtime:
