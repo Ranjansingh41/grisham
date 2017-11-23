@@ -180,7 +180,7 @@ jobs:
           script:
             - echo "hello"
             - uname -a
-            - /usr/bin/xcodebuild -version
+            - xcode-select --version
 
   - name: aarch64_host_job
     type: runSh
