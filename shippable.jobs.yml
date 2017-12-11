@@ -177,10 +177,9 @@ jobs:
       - IN: global_state
         switch: off
       - TASK:
-        - script:
-          - pushd /tmp
-          - ./buildImage.sh u14
-          - popd
+        - script: pushd /tmp
+        - script: ./buildImage.sh u14
+        - script: popd
     on_success:
       - script: echo "successfully completed"
       - NOTIFY: slack
