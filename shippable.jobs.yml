@@ -165,6 +165,25 @@ jobs:
     flags:
       - runSh
 
+  - name: inline_task
+    type: runSh
+    steps:
+      - IN: execute_tasks_list
+        switch: off
+      - IN: global_state
+        switch: off
+      - TASK:
+        - script: |
+            pushd /tmp
+              ./buildImage.sh u14
+            popd
+    on_success:
+      - script: echo "successfully completed"
+      - NOTIFY: slack
+    on_failure:
+      - script: echo "Oops !!! something went wrong"
+      - NOTIFY: slack
+
   - name: x86_64_macOS
     type: runSh
     runtime:
