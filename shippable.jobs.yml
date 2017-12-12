@@ -243,6 +243,7 @@ jobs:
   - name: x86_ubuntu1404_host
     type: runSh
     runtime:
+      architecture: x86_64
       os: Ubuntu_14.04
       container: false
     steps:
