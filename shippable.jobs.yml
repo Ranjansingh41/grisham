@@ -240,6 +240,41 @@ jobs:
     always:
       - script: echo 'this will always run'
 
+  - name: x86_ubuntu1404_host
+    type: runSh
+    runtime:
+      os: Ubuntu_14.04
+      container: false
+    steps:
+      - IN: sample_python_runCI
+      - IN: reg_dh_ric03uec
+        switch: off
+      - TASK:
+          name: check host architecture
+          runtime:
+            options:
+              env:
+                ENV_FOO: FOO
+                ENV_BAR: BAR
+          script:
+            - echo "executing PRE_TASK steps 2"
+            - echo "executing PRE_TASK steps 4"
+            - uname -a
+            - ps aux | wc -l
+      - TASK:
+          name: test_task_1
+          runtime:
+            container: false
+          script:
+            - echo "executing POST_TASK steps 2"
+            - echo "executing POST_TASK steps 3"
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: 'echo ''Failed job .... :('''
+    always:
+      - script: echo 'this will always run'
+
   - name: docker_build_host
     type: runSh
     runtime:
