@@ -167,6 +167,7 @@ jobs:
 
   - name: inline_task
     type: runSh
+    dependencyMode: immediate
     runtime:
       architecture: x86_64
       os: Ubuntu_16.04
@@ -242,6 +243,7 @@ jobs:
 
   - name: x86_ubuntu1404_host
     type: runSh
+    dependencyMode: strict
     runtime:
       architecture: x86_64
       os: Ubuntu_14.04
