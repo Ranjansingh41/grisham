@@ -165,6 +165,36 @@ jobs:
     flags:
       - runSh
 
+  - name: failed_job_dependency
+    type: runSh
+    dependencyMode: strict
+    steps:
+      - IN: reg_dh_ric03uec
+      - IN: failed_job
+        switch: off
+      - IN: global_state
+        switch: off
+      - TASK:
+          name: host_check_OS
+          runtime:
+            options:
+              env:
+                ENV5: VALUE5
+                ENV6: VALUE6
+          script:
+            - uname -a
+            - df -h
+            - cat /etc/os-release
+            - sudo docker info
+    on_success:
+      - script: echo "successfully completed"
+      - NOTIFY: slack
+    on_failure:
+      - script: echo "Oops !!! something went wrong"
+      - NOTIFY: slack
+    flags:
+      - runSh
+
   - name: inline_task
     type: runSh
     dependencyMode: immediate
