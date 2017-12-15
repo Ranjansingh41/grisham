@@ -167,6 +167,10 @@ jobs:
 
   - name: failed_job_dependency
     type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: false
     dependencyMode: strict
     steps:
       - IN: reg_dh_ric03uec
