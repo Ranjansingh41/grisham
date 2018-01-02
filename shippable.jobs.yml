@@ -123,7 +123,7 @@ jobs:
             - uname -a
             - df -h
             - sudo docker images
-            - sleep 80
+            - sleep 360
     flags:
       - runSh
 
