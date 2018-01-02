@@ -108,6 +108,8 @@ jobs:
   - name: job_with_timeout
     type: runSh
     runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
       container: true
       timeoutMinutes: 1
     steps:
