@@ -105,6 +105,26 @@ jobs:
     flags:
       - runSh
 
+  - name: job_with_timeout
+    type: runSh
+    runtime:
+      container: true
+      timeoutMinutes: 1
+    steps:
+      - IN: reg_dh_ric03uec
+      - IN: job_with_no_runtime
+      - IN: global_state
+        switch: off
+      - TASK:
+          name: long_running_task
+          script:
+            - uname -a
+            - df -h
+            - sudo docker images
+            - sleep 70
+    flags:
+      - runSh
+
   - name: job_with_runtime
     type: runSh
     runtime:
