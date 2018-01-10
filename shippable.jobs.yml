@@ -24,7 +24,7 @@ jobs:
     on_start:
       - NOTIFY: slack
     runtime:
-      cluster: u14DynamicLarge1
+      cluster: dyn_u14_large_01
       container: true
     steps:
       - IN: reg_dh_ric03uec
