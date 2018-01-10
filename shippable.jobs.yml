@@ -24,8 +24,7 @@ jobs:
     on_start:
       - NOTIFY: slack
     runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: u14DynamicLarge1
       container: true
     steps:
       - IN: reg_dh_ric03uec
