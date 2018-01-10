@@ -107,8 +107,7 @@ jobs:
   - name: job_with_timeout
     type: runSh
     runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: cus_x86_u16_01
       container: true
       timeoutMinutes: 1
     steps:
@@ -129,8 +128,7 @@ jobs:
   - name: job_with_runtime
     type: runSh
     runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: dyn_u14_large_01
     steps:
       - IN: reg_dh_ric03uec
       - IN: execute_tasks_list
@@ -153,8 +151,7 @@ jobs:
   - name: failed_job
     type: runSh
     runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: dyn_u14_large_01
       container: false
     steps:
       - IN: reg_dh_ric03uec
@@ -189,8 +186,7 @@ jobs:
   - name: failed_job_dependency
     type: runSh
     runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: dyn_u14_large_01
       container: false
     dependencyMode: strict
     steps:
@@ -224,8 +220,7 @@ jobs:
     type: runSh
     dependencyMode: immediate
     runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: dyn_u14_large_01
       container: false
     steps:
       - IN: execute_tasks_list
@@ -246,8 +241,7 @@ jobs:
   - name: x86_64_macOS
     type: runSh
     runtime:
-      architecture: x86_64
-      os: macOS_10.12
+      cluster: cus_x86_macOS_01
       container: false
     steps:
       - IN: sample_python_runCI
@@ -263,8 +257,7 @@ jobs:
   - name: aarch64_host_job
     type: runSh
     runtime:
-      architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: cus_aarch_u16_01
       container: false
     steps:
       - IN: sample_python_runCI
@@ -334,8 +327,7 @@ jobs:
   - name: docker_build_host
     type: runSh
     runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: dyn_u14_large_01
       container: false
     steps:
       - IN: repo_sample_python
@@ -361,8 +353,7 @@ jobs:
   - name: docker_build_container
     type: runSh
     runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: dyn_u14_large_01
     steps:
       - IN: repo_sample_python
         switch: off
@@ -394,8 +385,7 @@ jobs:
   - name: deploy_ec2_ubuntu
     type: runSh
     runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: dyn_u14_large_01
     steps:
       - IN: image_sample_python
       - IN: reg_dh_ric03uec
