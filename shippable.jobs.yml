@@ -128,7 +128,7 @@ jobs:
   - name: job_with_runtime
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      cluster: cus_x86_u14_01
     steps:
       - IN: reg_dh_ric03uec
       - IN: execute_tasks_list
@@ -220,7 +220,7 @@ jobs:
     type: runSh
     dependencyMode: immediate
     runtime:
-      cluster: dyn_u14_large_01
+      cluster: cus_x86_u16_01
       container: false
     steps:
       - IN: execute_tasks_list
