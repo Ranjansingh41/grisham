@@ -300,8 +300,6 @@ jobs:
     type: runSh
     dependencyMode: strict
     runtime:
-      architecture: x86_64
-      os: Ubuntu_14.04
       container: false
     steps:
       - IN: sample_python_runCI
