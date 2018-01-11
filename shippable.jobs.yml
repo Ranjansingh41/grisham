@@ -537,6 +537,29 @@ jobs:
     always:
       - script: echo 'this should always run'
 
+  # Testing: custom image with errors
+  - name: dyn_x86_ubuntu1404_large_06
+    type: runSh
+    runtime:
+      cluster: dyn_x86_ubuntu1404_large
+    steps:
+      - IN: dyn_x86_ubuntu1404_large_01
+      - TASK:
+          name: custom_image_task_failed
+          runtime:
+            imageName: drydock/u14pytall
+            imageTag: master
+          script:
+            - uname -a
+            - docker images
+            - foobar this should fail
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
   #########################################
   #### Custom - x86 - Ubuntu 16.04
   #########################################
@@ -661,6 +684,28 @@ jobs:
             - uname -a
             - docker images
             - env | grep CUSTOM
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
+  - name: cus_x86_ubuntu1604_06
+    type: runSh
+    runtime:
+      cluster: cus_x86_ubuntu1604
+    steps:
+      - IN: cus_x86_ubuntu1604_01
+      - TASK:
+          name: custom_image_task_failed
+          runtime:
+            imageName: drydock/u14pytall
+            imageTag: master
+          script:
+            - uname -a
+            - docker images
+            - foobar this should fail
     on_success:
       - script: echo 'job succeeded'
     on_failure:

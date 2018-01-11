@@ -25,8 +25,8 @@
 |jobs on custom image with ENVS|x|x|||
 |jobs on custom image without errors execute on_success and always|x|x|||
 |jobs on custom image with runtime params|||||
-|jobs on custom image with errors|||||
-|jobs on custom image with errors execute on_failure and always|||||
+|jobs on custom image with errors|x|x|||
+|jobs on custom image with errors execute on_failure and always|x|x|||
 |jobs on custom image timing out|||||
 
 ## Feature test matrix
