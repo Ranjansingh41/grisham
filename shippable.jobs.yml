@@ -413,7 +413,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_01
     type: runSh
     runtime:
-      cluster: dyn_x86_ubuntu1404_large
+      cluster: dyn_u14_large_01
     steps:
       - IN: sample_python_runCI
       - TASK:
@@ -437,7 +437,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_02
     type: runSh
     runtime:
-      cluster: dyn_x86_ubuntu1404_large
+      cluster: dyn_u14_large_01
     steps:
       - IN: dyn_x86_ubuntu1404_large_01
       - TASK:
@@ -456,7 +456,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_03
     type: runSh
     runtime:
-      cluster: dyn_x86_ubuntu1404_large
+      cluster: dyn_u14_large_01
       container: false
     steps:
       - IN: sample_python_runCI
@@ -486,7 +486,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_04
     type: runSh
     runtime:
-      cluster: dyn_x86_ubuntu1404_large
+      cluster: dyn_u14_large_01
       container: false
     steps:
       - IN: dyn_x86_ubuntu1404_large_03
@@ -506,7 +506,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_05
     type: runSh
     runtime:
-      cluster: dyn_x86_ubuntu1404_large
+      cluster: dyn_u14_large_01
     steps:
       - IN: dyn_x86_ubuntu1404_large_01
       - TASK:
@@ -541,7 +541,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_06
     type: runSh
     runtime:
-      cluster: dyn_x86_ubuntu1404_large
+      cluster: dyn_u14_large_01
     steps:
       - IN: dyn_x86_ubuntu1404_large_01
       - TASK:
@@ -567,7 +567,7 @@ jobs:
   - name: cus_x86_ubuntu1604_01
     type: runSh
     runtime:
-      cluster: cus_x86_ubuntu1604
+      cluster: cus_x86_u16_01
     steps:
       - IN: sample_python_runCI
       - TASK:
@@ -591,7 +591,7 @@ jobs:
   - name: cus_x86_ubuntu1604_02
     type: runSh
     runtime:
-      cluster: cus_x86_ubuntu1604
+      cluster: cus_x86_u16_01
     steps:
       - IN: cus_x86_ubuntu1604_01
       - TASK:
@@ -610,7 +610,7 @@ jobs:
   - name: cus_x86_ubuntu1604_03
     type: runSh
     runtime:
-      cluster: cus_x86_ubuntu1604
+      cluster: cus_x86_u16_01
       container: false
     steps:
       - IN: sample_python_runCI
@@ -640,7 +640,7 @@ jobs:
   - name: cus_x86_ubuntu1604_04
     type: runSh
     runtime:
-      cluster: cus_x86_ubuntu1604
+      cluster: cus_x86_u16_01
       container: false
     steps:
       - IN: cus_x86_ubuntu1604_03
@@ -660,7 +660,7 @@ jobs:
   - name: cus_x86_ubuntu1604_05
     type: runSh
     runtime:
-      cluster: cus_x86_ubuntu1604
+      cluster: cus_x86_u16_01
     steps:
       - IN: cus_x86_ubuntu1604_01
       - TASK:
@@ -694,7 +694,7 @@ jobs:
   - name: cus_x86_ubuntu1604_06
     type: runSh
     runtime:
-      cluster: cus_x86_ubuntu1604
+      cluster: cus_x86_u16_01
     steps:
       - IN: cus_x86_ubuntu1604_01
       - TASK:
