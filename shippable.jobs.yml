@@ -402,7 +402,10 @@ jobs:
     on_failure:
       - script: echo 'deployment to ec2 failed'
 
+  #########################################
   #### Dynamic - x86 - Ubuntu 14.04 - large
+  #########################################
+  # Testing: default runtime: container
   - name: dyn_x86_ubuntu1404_large_01
     type: runSh
     runtime:
@@ -426,6 +429,7 @@ jobs:
     always:
       - script: echo 'this should always run'
 
+  # Testing: default runtime: host
   - name: dyn_x86_ubuntu1404_large_02
     type: runSh
     runtime:
@@ -441,8 +445,46 @@ jobs:
           name: container_task
           runtime:
             container: true
+            options:
+              env:
+                - CUSTOM_ENV_3: custom_env_three
+                - CUSTOM_ENV_4: custom_env_four
           script:
             - uname -a
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
+  # Testing: custom image
+  - name: dyn_x86_ubuntu1404_large_02
+    type: runSh
+    runtime:
+      cluster: dyn_x86_ubuntu1404_large
+    steps:
+      - IN: sample_python_runCI
+      - TASK:
+          name: custom_task_image
+          runtime:
+            imageName: drydock/u14pytall
+            imageTag: master
+          script:
+            - uname -a
+            - docker images
+      - TASK:
+          name: custom_task_image
+          runtime:
+            options:
+              env:
+                - CUSTOM_ENV_1: custom_env_one
+                - CUSTOM_ENV_2: custom_env_two
+              imageName: drydock/u14pytall
+              imageTag: master
+          script:
+            - uname -a
+            - docker images
     on_success:
       - script: echo 'job succeeded'
     on_failure:
