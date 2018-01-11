@@ -29,6 +29,7 @@ jobs:
     steps:
       - IN: reg_dh_ric03uec
       - IN: sample_python_runCI
+        switch: off
       - IN: global_state
         switch: off
       - TASK:
@@ -245,6 +246,7 @@ jobs:
       container: false
     steps:
       - IN: sample_python_runCI
+        switch: off
       - IN: reg_dh_ric03uec
         switch: off
       - TASK:
@@ -261,6 +263,7 @@ jobs:
       container: false
     steps:
       - IN: sample_python_runCI
+        switch: off
       - IN: reg_dh_ric03uec
         switch: off
       - TASK:
@@ -296,6 +299,7 @@ jobs:
       container: false
     steps:
       - IN: sample_python_runCI
+        switch: off
       - IN: reg_dh_ric03uec
         switch: off
       - TASK:
@@ -451,6 +455,7 @@ jobs:
                 - CUSTOM_ENV_4: custom_env_four
           script:
             - uname -a
+            - env | grep CUSTOM
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -485,6 +490,7 @@ jobs:
           script:
             - uname -a
             - docker images
+            - env | grep CUSTOM
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -541,6 +547,42 @@ jobs:
                 - CUSTOM_ENV_4: custom_env_four
           script:
             - uname -a
+            - env | grep CUSTOM
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
+  # Testing: custom image
+  - name: cus_x86_ubuntu1604_03
+    type: runSh
+    runtime:
+      cluster: cus_x86_ubuntu1604
+    steps:
+      - IN: sample_python_runCI
+      - TASK:
+          name: custom_task_image
+          runtime:
+            imageName: drydock/u14pytall
+            imageTag: master
+          script:
+            - uname -a
+            - docker images
+      - TASK:
+          name: custom_task_image
+          runtime:
+            options:
+              env:
+                - CUSTOM_ENV_1: custom_env_one
+                - CUSTOM_ENV_2: custom_env_two
+              imageName: drydock/u14pytall
+              imageTag: master
+          script:
+            - uname -a
+            - docker images
+            - env | grep CUSTOM
     on_success:
       - script: echo 'job succeeded'
     on_failure:

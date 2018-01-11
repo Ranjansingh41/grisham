@@ -21,9 +21,9 @@
 |jobs on default image with errors execute on_failure and always|||||
 |jobs on default image timing out|||||
 |---|---|---|---|---|---|
-|jobs on custom image|x||||
-|jobs on custom image with ENVS|x||||
-|jobs on custom image without errors execute on_success and always|x||||
+|jobs on custom image|x|x|||
+|jobs on custom image with ENVS|x|x|||
+|jobs on custom image without errors execute on_success and always|x|x|||
 |jobs on custom image with runtime params|||||
 |jobs on custom image with errors|||||
 |jobs on custom image with errors execute on_failure and always|||||
