@@ -1,4 +1,4 @@
-uobs:
+jobs:
   - name: non_grisham_job
     type: runSh
     steps:
@@ -402,10 +402,7 @@ uobs:
     on_failure:
       - script: echo 'deployment to ec2 failed'
 
-##############################################################################
-##############################################################################
-
-#### Dynamic - x86 - Ubuntu 14.04 - large
+  #### Dynamic - x86 - Ubuntu 14.04 - large
   - name: dyn_x86_ubuntu1404_large
     type: runSh
     runtime:
