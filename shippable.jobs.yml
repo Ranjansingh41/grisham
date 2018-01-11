@@ -1,4 +1,4 @@
-jobs:
+uobs:
   - name: non_grisham_job
     type: runSh
     steps:
@@ -401,3 +401,28 @@ jobs:
             - sleep 10
     on_failure:
       - script: echo 'deployment to ec2 failed'
+
+##############################################################################
+##############################################################################
+
+#### Dynamic - x86 - Ubuntu 14.04 - large
+  - name: dyn_x86_ubuntu1404_large
+    type: runSh
+    runtime:
+      cluster: dyn_x86_ubuntu1404_large
+    steps:
+      - IN: sample_python_runCI
+      - TASK:
+          name: host_task
+          script:
+            - uname -a
+      - TASK:
+          name: container_task
+          script:
+            - uname -a
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
