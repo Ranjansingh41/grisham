@@ -7,7 +7,7 @@
 |Features/arch-os|x86_u14|x86_u16|aarch_u16|x86_mac10|x86_win16|
 |---|---|---|---|---|---|
 |jobs on host|x|x|||
-|jobs on host with custom ENVS|||||
+|jobs on host with custom ENVS|x|x|||
 |jobs on host without errors execute on_success and always|x|x|||
 |jobs on host with errors|x|x|||
 |jobs on host with errors execute on_failure and always|x|x|||
