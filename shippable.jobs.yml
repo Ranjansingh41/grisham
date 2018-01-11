@@ -459,7 +459,7 @@ jobs:
       - script: echo 'this should always run'
 
   # Testing: custom image
-  - name: dyn_x86_ubuntu1404_large_02
+  - name: dyn_x86_ubuntu1404_large_03
     type: runSh
     runtime:
       cluster: dyn_x86_ubuntu1404_large
