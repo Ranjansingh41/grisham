@@ -410,15 +410,15 @@ jobs:
     steps:
       - IN: sample_python_runCI
       - TASK:
-        name: host_task
-        runtime:
-          container: false
-        script:
-          - uname -a
+          name: host_task
+          runtime:
+            container: false
+          script:
+            - uname -a
       - TASK:
-        name: container_task
-        script:
-          - uname -a
+          name: container_task
+          script:
+            - uname -a
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -434,15 +434,15 @@ jobs:
     steps:
       - IN: sample_python_runCI
       - TASK:
-        name: host_task
-        script:
-          - uname -a
+          name: host_task
+          script:
+            - uname -a
       - TASK:
-        name: container_task
-        runtime:
-          container: true
-        script:
-          - uname -a
+          name: container_task
+          runtime:
+            container: true
+          script:
+            - uname -a
     on_success:
       - script: echo 'job succeeded'
     on_failure:
