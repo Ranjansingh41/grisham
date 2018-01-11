@@ -9,8 +9,8 @@
 |jobs on host|x|x|||
 |jobs on host with custom ENVS|||||
 |jobs on host without errors execute on_success and always|x|x|||
-|jobs on host with errors|||||
-|jobs on host with errors execute on_failure and always|||||
+|jobs on host with errors|x|x|||
+|jobs on host with errors execute on_failure and always|x|x|||
 |jobs on host timing out|||||
 |---|---|---|---|---|---|
 |jobs on default image|x|x|||
