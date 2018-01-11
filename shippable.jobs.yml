@@ -441,7 +441,7 @@ jobs:
     steps:
       - IN: dyn_x86_ubuntu1404_large_01
       - TASK:
-          name: host_task_with_error
+          name: default_image_task_with_error
           script:
             - uname -a
             - foobaaaaar will fail on the host
@@ -545,7 +545,7 @@ jobs:
     steps:
       - IN: dyn_x86_ubuntu1404_large_01
       - TASK:
-          name: custom_image_task_failed
+          name: custom_image_task_with_error
           runtime:
             imageName: drydock/u14pytall
             imageTag: master
@@ -595,7 +595,7 @@ jobs:
     steps:
       - IN: cus_x86_ubuntu1604_01
       - TASK:
-          name: host_task_with_error
+          name: default_image_task_with_error
           script:
             - uname -a
             - foobaaaaar will fail on the host
@@ -698,7 +698,7 @@ jobs:
     steps:
       - IN: cus_x86_ubuntu1604_01
       - TASK:
-          name: custom_image_task_failed
+          name: custom_image_task_with_error
           runtime:
             imageName: drydock/u14pytall
             imageTag: master
