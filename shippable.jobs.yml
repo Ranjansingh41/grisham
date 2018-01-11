@@ -409,7 +409,7 @@ jobs:
   #########################################
   #### Dynamic - x86 - Ubuntu 14.04 - large
   #########################################
-  # Testing: default runtime: container
+  # Testing: runtime - default
   - name: dyn_x86_ubuntu1404_large_01
     type: runSh
     runtime:
@@ -433,8 +433,27 @@ jobs:
     always:
       - script: echo 'this should always run'
 
-  # Testing: default runtime: host
+  # Testing: runtime - default with errors
   - name: dyn_x86_ubuntu1404_large_02
+    type: runSh
+    runtime:
+      cluster: dyn_x86_ubuntu1404_large
+    steps:
+      - IN: dyn_x86_ubuntu1404_large_01
+      - TASK:
+          name: host_task_with_error
+          script:
+            - uname -a
+            - foobaaaaar will fail on the host
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
+  # Testing: runtime - host
+  - name: dyn_x86_ubuntu1404_large_03
     type: runSh
     runtime:
       cluster: dyn_x86_ubuntu1404_large
@@ -463,8 +482,28 @@ jobs:
     always:
       - script: echo 'this should always run'
 
+  # Testing: default runtime: host with error
+  - name: dyn_x86_ubuntu1404_large_04
+    type: runSh
+    runtime:
+      cluster: dyn_x86_ubuntu1404_large
+      container: false
+    steps:
+      - IN: dyn_x86_ubuntu1404_large_03
+      - TASK:
+          name: host_task_with_error
+          script:
+            - uname -a
+            - foobaaaaar will fail on the host
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
   # Testing: custom image
-  - name: dyn_x86_ubuntu1404_large_03
+  - name: dyn_x86_ubuntu1404_large_05
     type: runSh
     runtime:
       cluster: dyn_x86_ubuntu1404_large
@@ -498,49 +537,10 @@ jobs:
     always:
       - script: echo 'this should always run'
 
-  # Testing: runtime container with errors
-  - name: dyn_x86_ubuntu1404_large_04
-    type: runSh
-    runtime:
-      cluster: dyn_x86_ubuntu1404_large
-    steps:
-      - IN: dyn_x86_ubuntu1404_large_01
-      - TASK:
-          name: host_task_with_error
-          script:
-            - uname -a
-            - foobaaaaar will fail on the host
-    on_success:
-      - script: echo 'job succeeded'
-    on_failure:
-      - script: echo 'job failed... :('
-    always:
-      - script: echo 'this should always run'
-
-  # Testing: default runtime: host with error
-  - name: dyn_x86_ubuntu1404_large_05
-    type: runSh
-    runtime:
-      cluster: dyn_x86_ubuntu1404_large
-      container: false
-    steps:
-      - IN: dyn_x86_ubuntu1404_large_02
-      - TASK:
-          name: host_task_with_error
-          script:
-            - uname -a
-            - foobaaaaar will fail on the host
-    on_success:
-      - script: echo 'job succeeded'
-    on_failure:
-      - script: echo 'job failed... :('
-    always:
-      - script: echo 'this should always run'
-
   #########################################
   #### Custom - x86 - Ubuntu 16.04
   #########################################
-  # Testing: default runtime: container
+  # Testing: runtime - default
   - name: cus_x86_ubuntu1604_01
     type: runSh
     runtime:
@@ -564,8 +564,27 @@ jobs:
     always:
       - script: echo 'this should always run'
 
-  # Testing: default runtime: host
+  # Testing: runtime - default with errors
   - name: cus_x86_ubuntu1604_02
+    type: runSh
+    runtime:
+      cluster: cus_x86_ubuntu1604
+    steps:
+      - IN: cus_x86_ubuntu1604_01
+      - TASK:
+          name: host_task_with_error
+          script:
+            - uname -a
+            - foobaaaaar will fail on the host
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
+  # Testing: runtime - host
+  - name: cus_x86_ubuntu1604_03
     type: runSh
     runtime:
       cluster: cus_x86_ubuntu1604
@@ -594,8 +613,28 @@ jobs:
     always:
       - script: echo 'this should always run'
 
+  # Testing: runtime - host with errors
+  - name: cus_x86_ubuntu1604_04
+    type: runSh
+    runtime:
+      cluster: cus_x86_ubuntu1604
+      container: false
+    steps:
+      - IN: cus_x86_ubuntu1604_03
+      - TASK:
+          name: host_task_with_error
+          script:
+            - uname -a
+            - foob baaaaar will fail on the host
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
   # Testing: custom image
-  - name: cus_x86_ubuntu1604_03
+  - name: cus_x86_ubuntu1604_05
     type: runSh
     runtime:
       cluster: cus_x86_ubuntu1604
@@ -622,45 +661,6 @@ jobs:
             - uname -a
             - docker images
             - env | grep CUSTOM
-    on_success:
-      - script: echo 'job succeeded'
-    on_failure:
-      - script: echo 'job failed... :('
-    always:
-      - script: echo 'this should always run'
-
-  # Testing: runtime container with errors
-  - name: cus_x86_ubuntu1604_04
-    type: runSh
-    runtime:
-      cluster: cus_x86_ubuntu1604
-    steps:
-      - IN: dyn_x86_ubuntu1604_large_01
-      - TASK:
-          name: host_task_with_error
-          script:
-            - uname -a
-            - foobaaaaar will fail on the host
-    on_success:
-      - script: echo 'job succeeded'
-    on_failure:
-      - script: echo 'job failed... :('
-    always:
-      - script: echo 'this should always run'
-
-  # Testing: default runtime: host with error
-  - name: cus_x86_ubuntu1604_05
-    type: runSh
-    runtime:
-      cluster: cus_x86_ubuntu1604
-      container: false
-    steps:
-      - IN: cus_x86_ubuntu1604_02
-      - TASK:
-          name: host_task_with_error
-          script:
-            - uname -a
-            - foob baaaaar will fail on the host
     on_success:
       - script: echo 'job succeeded'
     on_failure:
