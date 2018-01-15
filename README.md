@@ -34,7 +34,7 @@
 
 ## Job functionality test matrix
 
-|Functionality/os|x86_u14|x86_u16|aarch_u16|x86_mac10|x86|win16|
+|Functionality/os|x86_u14|x86_u16|aarch_u16|x86_mac10|x86_win16|
 |---|---|---|---|---|---|
 |pre task notifications||||||
 |IN processing||||||
