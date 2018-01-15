@@ -581,6 +581,54 @@ jobs:
     always:
       - script: echo 'this should always run'
 
+  # testing: jobs on host timing out
+  - name: dyn_x86_ubuntu1404_large_timeout_08
+    type: runSh
+    runtime:
+      cluster: dyn_u14_large_01
+      container: false
+      timeoutMinutes: 1
+    steps:
+      - IN: dyn_x86_ubuntu1404_large_03
+      - TASK:
+          name: long_running_task_on_host
+          script:
+            - uname -a
+            - df -h
+            - sudo docker images
+            - sleep 360
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
+  # testing: jobs on custom image timing out
+  - name: dyn_x86_ubuntu1404_large_timeout_09
+    type: runSh
+    runtime:
+      cluster: dyn_u14_large_01
+      container: false
+      timeoutMinutes: 1
+    steps:
+      - IN: dyn_x86_ubuntu1404_large_05
+      - TASK:
+          name: custom_task_image
+          runtime:
+            imageName: drydock/u14pytall
+            imageTag: master
+          script:
+            - uname -a
+            - docker images
+            - sleep 360
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
   #########################################
   #### Custom - x86 - Ubuntu 16.04
   #########################################
@@ -734,10 +782,11 @@ jobs:
     always:
       - script: echo 'this should always run'
 
-  - name: dyn_x86_ubuntu1604_large_timeout_07
+  # testing: jobs timing out on default runtime
+  - name: cus_x86_ubuntu1604_timeout_07
     type: runSh
     runtime:
-      cluster: dyn_u16_large_01
+      cluster: cus_x86_u16_01
       timeoutMinutes: 1
     steps:
       - IN: cus_x86_ubuntu1604_01
@@ -747,6 +796,54 @@ jobs:
             - uname -a
             - df -h
             - sudo docker images
+            - sleep 360
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
+  # testing: jobs on host timing out
+  - name: cus_x86_ubuntu1604_timeout_08
+    type: runSh
+    runtime:
+      cluster: cus_x86_u16_01
+      timeoutMinutes: 1
+      container: false
+    steps:
+      - IN: cus_x86_ubuntu1604_03
+      - TASK:
+          name: long_running_task_on_host
+          script:
+            - uname -a
+            - df -h
+            - sudo docker images
+            - sleep 360
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
+  # testing: jobs on custom image timing out
+  - name: cus_x86_ubuntu1604_timeout_09
+    type: runSh
+    runtime:
+      cluster: cus_x86_u16_01
+      container: false
+      timeoutMinutes: 1
+    steps:
+      - IN: cus_x86_ubuntu1604_05
+      - TASK:
+          name: custom_task_image
+          runtime:
+            imageName: drydock/u14pytall
+            imageTag: master
+          script:
+            - uname -a
+            - docker images
             - sleep 360
     on_success:
       - script: echo 'job succeeded'
