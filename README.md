@@ -13,6 +13,7 @@
 |jobs on host with errors execute on_failure and always|x|x|||
 |jobs on host timing out|||||
 |jobs on host cancellation|||||
+|jobs on host sharing state b/w tasks|x|x|||
 |---|---|---|---|---|---|
 |jobs on default image|x|x|||
 |jobs on default image with ENVS|x|x|||

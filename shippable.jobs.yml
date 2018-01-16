@@ -635,6 +635,32 @@ jobs:
       cluster: dyn_u14_large_01
       container: false
     steps:
+      - IN: dyn_x86_ubuntu1404_large_01
+      - TASK:
+          name: check_shared_dir
+          script:
+            - ls -atlh $SHARED_DIR
+      - TASK:
+          name: generate_and_share
+          script:
+            - echo FOOOOOOO > $SHARED_DIR/shared_file.txt
+      - TASK:
+          name: read_shared
+          script:
+            - cat $SHARED_DIR/shared_file.txt
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
+  - name: dyn_x86_ubuntu1404_large_shared_11
+    type: runSh
+    runtime:
+      cluster: dyn_u14_large_01
+      container: false
+    steps:
       - IN: dyn_x86_ubuntu1404_large_03
       - TASK:
           name: check_shared_dir
@@ -880,6 +906,34 @@ jobs:
 
   # testing: shared directory
   - name: cus_x86_ubuntu1604_shared_10
+    type: runSh
+    runtime:
+      cluster: cus_x86_u16_01
+      container: false
+      timeoutMinutes: 1
+    steps:
+      - IN: cus_x86_ubuntu1604_01
+      - TASK:
+          name: check_shared_dir
+          script:
+            - ls -atlh $SHARED_DIR
+      - TASK:
+          name: generate_and_share
+          script:
+            - echo FOOOOOOO > $SHARED_DIR/shared_file.txt
+      - TASK:
+          name: read_shared
+          script:
+            - cat $SHARED_DIR/shared_file.txt
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
+  # testing: shared directory with host runtime
+  - name: cus_x86_ubuntu1604_shared_11
     type: runSh
     runtime:
       cluster: cus_x86_u16_01
