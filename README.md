@@ -11,7 +11,7 @@
 |jobs on host without errors execute on_success and always|x|x|||
 |jobs on host with errors|x|x|||
 |jobs on host with errors execute on_failure and always|x|x|||
-|jobs on host timing out|||||
+|jobs on host timing out|x|x|||
 |jobs on host cancellation|||||
 |jobs on host sharing state b/w tasks|x|x|||
 |---|---|---|---|---|---|
@@ -31,7 +31,7 @@
 |jobs on custom image with runtime params|||||
 |jobs on custom image with errors|x|x|||
 |jobs on custom image with errors execute on_failure and always|x|x|||
-|jobs on custom image timing out|||||
+|jobs on custom image timing out|x|x|||
 |jobs on custom image cancellation|||||
 |jobs on custom image sharing state b/w tasks|x|x|||
 
@@ -39,7 +39,7 @@
 
 |Functionality/os|x86_u14|x86_u16|aarch_u16|x86_mac10|x86_win16|
 |---|---|---|---|---|---|
-|pre task notifications||||||
-|IN processing||||||
+|pre task notifications|x|x||||
+|IN processing|x|x||||
 |OUT processing||||||
 |global state||||||
