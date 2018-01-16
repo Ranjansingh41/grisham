@@ -22,6 +22,7 @@
 |jobs on default image with errors execute on_failure and always|x|x|||
 |jobs on default image timing out|x|x|||
 |jobs on default image cancellation|||||
+|jobs on default image sharing state b/w tasks|x|x|||
 |---|---|---|---|---|---|
 |jobs on custom image|x|x|||
 |jobs on custom image with ENVS|x|x|||
@@ -40,4 +41,3 @@
 |IN processing||||||
 |OUT processing||||||
 |global state||||||
-|state sharing between tasks||||||
