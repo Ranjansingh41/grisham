@@ -33,6 +33,7 @@
 |jobs on custom image with errors execute on_failure and always|x|x|||
 |jobs on custom image timing out|||||
 |jobs on custom image cancellation|||||
+|jobs on custom image sharing state b/w tasks|x|x|||
 
 ## Job functionality test matrix
 

@@ -609,7 +609,6 @@ jobs:
     type: runSh
     runtime:
       cluster: dyn_u14_large_01
-      container: false
       timeoutMinutes: 1
     steps:
       - IN: dyn_x86_ubuntu1404_large_05
@@ -629,11 +628,11 @@ jobs:
     always:
       - script: echo 'this should always run'
 
+  # testing jobs on default runtime
   - name: dyn_x86_ubuntu1404_large_shared_10
     type: runSh
     runtime:
       cluster: dyn_u14_large_01
-      container: false
     steps:
       - IN: dyn_x86_ubuntu1404_large_01
       - TASK:
@@ -655,6 +654,7 @@ jobs:
     always:
       - script: echo 'this should always run'
 
+  # testing: jobs on host sharing data
   - name: dyn_x86_ubuntu1404_large_shared_11
     type: runSh
     runtime:
@@ -668,6 +668,39 @@ jobs:
             - ls -atlh $SHARED_DIR
       - TASK:
           name: generate_and_share
+          script:
+            - echo FOOOOOOO > $SHARED_DIR/shared_file.txt
+      - TASK:
+          name: read_shared
+          script:
+            - cat $SHARED_DIR/shared_file.txt
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
+  # testing: jobs on custom image sharing data
+  - name: dyn_x86_ubuntu1404_large_shared_12
+    type: runSh
+    runtime:
+      cluster: dyn_u14_large_01
+      container: true
+    steps:
+      - IN: dyn_x86_ubuntu1404_large_03
+      - TASK:
+          name: check_shared_dir
+          runtime:
+            imageName: drydock/u14pytall
+            imageTag: master
+          script:
+            - ls -atlh $SHARED_DIR
+      - TASK:
+          name: generate_and_share
+          runtime:
+            imageName: drydock/u14pytall
+            imageTag: master
           script:
             - echo FOOOOOOO > $SHARED_DIR/shared_file.txt
       - TASK:
@@ -884,7 +917,6 @@ jobs:
     type: runSh
     runtime:
       cluster: cus_x86_u16_01
-      container: false
       timeoutMinutes: 1
     steps:
       - IN: cus_x86_ubuntu1604_05
@@ -904,13 +936,11 @@ jobs:
     always:
       - script: echo 'this should always run'
 
-  # testing: shared directory
+  # testing: tasks on default runtime sharing data
   - name: cus_x86_ubuntu1604_shared_10
     type: runSh
     runtime:
       cluster: cus_x86_u16_01
-      container: false
-      timeoutMinutes: 1
     steps:
       - IN: cus_x86_ubuntu1604_01
       - TASK:
@@ -932,7 +962,7 @@ jobs:
     always:
       - script: echo 'this should always run'
 
-  # testing: shared directory with host runtime
+  # testing: tasks on host sharing data
   - name: cus_x86_ubuntu1604_shared_11
     type: runSh
     runtime:
@@ -947,6 +977,40 @@ jobs:
             - ls -atlh $SHARED_DIR
       - TASK:
           name: generate_and_share
+          script:
+            - echo FOOOOOOO > $SHARED_DIR/shared_file.txt
+      - TASK:
+          name: read_shared
+          script:
+            - cat $SHARED_DIR/shared_file.txt
+    on_success:
+      - script: echo 'job succeeded'
+    on_failure:
+      - script: echo 'job failed... :('
+    always:
+      - script: echo 'this should always run'
+
+  # testing: tasks on custom image sharing data
+  - name: cus_x86_ubuntu1604_shared_12
+    type: runSh
+    runtime:
+      cluster: cus_x86_u16_01
+      container: false
+      timeoutMinutes: 1
+    steps:
+      - IN: cus_x86_ubuntu1604_03
+      - TASK:
+          name: check_shared_dir
+          runtime:
+            imageName: drydock/u14pytall
+            imageTag: master
+          script:
+            - ls -atlh $SHARED_DIR
+      - TASK:
+          name: generate_and_share
+          runtime:
+            imageName: drydock/u14pytall
+            imageTag: master
           script:
             - echo FOOOOOOO > $SHARED_DIR/shared_file.txt
       - TASK:
