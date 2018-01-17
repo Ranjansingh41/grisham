@@ -24,7 +24,7 @@ jobs:
     on_start:
       - NOTIFY: slack
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
       container: true
     steps:
       - IN: reg_dh_ric03uec
@@ -108,7 +108,7 @@ jobs:
   - name: job_with_timeout
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
       container: true
       timeoutMinutes: 1
     steps:
@@ -129,7 +129,7 @@ jobs:
   - name: job_with_runtime
     type: runSh
     runtime:
-      cluster: cus_x86_u14_01
+      nodePool: cus_x86_u14_01
     steps:
       - IN: reg_dh_ric03uec
       - IN: execute_tasks_list
@@ -152,7 +152,7 @@ jobs:
   - name: failed_job
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
       container: false
     steps:
       - IN: reg_dh_ric03uec
@@ -187,7 +187,7 @@ jobs:
   - name: failed_job_dependency
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
       container: false
     dependencyMode: strict
     steps:
@@ -221,7 +221,7 @@ jobs:
     type: runSh
     dependencyMode: immediate
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
       container: false
     steps:
       - IN: execute_tasks_list
@@ -242,7 +242,7 @@ jobs:
   - name: x86_64_macOS
     type: runSh
     runtime:
-      cluster: cus_x86_macOS_01
+      nodePool: cus_x86_macOS_01
       container: false
     steps:
       - IN: sample_python_runCI
@@ -259,7 +259,7 @@ jobs:
   - name: aarch64_host_job
     type: runSh
     runtime:
-      cluster: cus_aarch_u16_01
+      nodePool: cus_aarch_u16_01
       container: false
     steps:
       - IN: sample_python_runCI
@@ -331,7 +331,7 @@ jobs:
   - name: docker_build_host
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
       container: false
     steps:
       - IN: repo_sample_python
@@ -357,7 +357,7 @@ jobs:
   - name: docker_build_container
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
     steps:
       - IN: repo_sample_python
         switch: off
@@ -389,7 +389,7 @@ jobs:
   - name: deploy_ec2_ubuntu
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
     steps:
       - IN: image_sample_python
       - IN: reg_dh_ric03uec
@@ -413,7 +413,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_01
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
     steps:
       - IN: sample_python_runCI
       - TASK:
@@ -437,7 +437,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_02
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
     steps:
       - IN: dyn_x86_ubuntu1404_large_01
       - TASK:
@@ -456,7 +456,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_03
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
       container: false
     steps:
       - IN: sample_python_runCI
@@ -486,7 +486,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_04
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
       container: false
     steps:
       - IN: dyn_x86_ubuntu1404_large_03
@@ -506,7 +506,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_05
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
     steps:
       - IN: dyn_x86_ubuntu1404_large_01
       - TASK:
@@ -541,7 +541,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_06
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
     steps:
       - IN: dyn_x86_ubuntu1404_large_05
       - TASK:
@@ -563,7 +563,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_timeout_07
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
       timeoutMinutes: 1
     steps:
       - IN: dyn_x86_ubuntu1404_large_01
@@ -585,7 +585,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_timeout_08
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
       container: false
       timeoutMinutes: 1
     steps:
@@ -608,7 +608,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_timeout_09
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
       timeoutMinutes: 1
     steps:
       - IN: dyn_x86_ubuntu1404_large_05
@@ -632,7 +632,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_shared_10
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
     steps:
       - IN: dyn_x86_ubuntu1404_large_01
       - TASK:
@@ -658,7 +658,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_shared_11
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
       container: false
     steps:
       - IN: dyn_x86_ubuntu1404_large_03
@@ -685,7 +685,7 @@ jobs:
   - name: dyn_x86_ubuntu1404_large_shared_12
     type: runSh
     runtime:
-      cluster: dyn_u14_large_01
+      nodePool: dyn_u14_large_01
       container: true
     steps:
       - IN: dyn_x86_ubuntu1404_large_03
@@ -721,7 +721,7 @@ jobs:
   - name: cus_x86_ubuntu1604_01
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
     steps:
       - IN: sample_python_runCI
       - TASK:
@@ -745,7 +745,7 @@ jobs:
   - name: cus_x86_ubuntu1604_02
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
     steps:
       - IN: cus_x86_ubuntu1604_01
       - TASK:
@@ -764,7 +764,7 @@ jobs:
   - name: cus_x86_ubuntu1604_03
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
       container: false
     steps:
       - IN: sample_python_runCI
@@ -794,7 +794,7 @@ jobs:
   - name: cus_x86_ubuntu1604_04
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
       container: false
     steps:
       - IN: cus_x86_ubuntu1604_03
@@ -814,7 +814,7 @@ jobs:
   - name: cus_x86_ubuntu1604_05
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
     steps:
       - IN: cus_x86_ubuntu1604_01
       - TASK:
@@ -848,7 +848,7 @@ jobs:
   - name: cus_x86_ubuntu1604_06
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
     steps:
       - IN: cus_x86_ubuntu1604_05
       - TASK:
@@ -871,7 +871,7 @@ jobs:
   - name: cus_x86_ubuntu1604_timeout_07
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
       timeoutMinutes: 1
     steps:
       - IN: cus_x86_ubuntu1604_01
@@ -893,7 +893,7 @@ jobs:
   - name: cus_x86_ubuntu1604_timeout_08
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
       timeoutMinutes: 1
       container: false
     steps:
@@ -916,7 +916,7 @@ jobs:
   - name: cus_x86_ubuntu1604_timeout_09
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
       timeoutMinutes: 1
     steps:
       - IN: cus_x86_ubuntu1604_05
@@ -940,7 +940,7 @@ jobs:
   - name: cus_x86_ubuntu1604_shared_10
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
     steps:
       - IN: cus_x86_ubuntu1604_01
       - TASK:
@@ -966,7 +966,7 @@ jobs:
   - name: cus_x86_ubuntu1604_shared_11
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
       container: false
       timeoutMinutes: 1
     steps:
@@ -994,7 +994,7 @@ jobs:
   - name: cus_x86_ubuntu1604_shared_12
     type: runSh
     runtime:
-      cluster: cus_x86_u16_01
+      nodePool: cus_x86_u16_01
       container: false
       timeoutMinutes: 1
     steps:
