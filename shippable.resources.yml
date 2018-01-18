@@ -36,6 +36,9 @@ resources:
   - name: global_state
     type: state
 
+  - name: x86_u1404_state
+    type: state
+
   - name: nginx-img
     type: image
     integration: reg_dh_ric03uec
