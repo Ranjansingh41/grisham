@@ -748,6 +748,7 @@ jobs:
       nodePool: cus_x86_u16_01
     steps:
       - IN: sample_python_runCI
+      - IN: x86_u1604_state
       - TASK:
           name: host_task
           runtime:
@@ -758,6 +759,7 @@ jobs:
           name: container_task
           script:
             - uname -a
+      - OUT: x86_u1604_state
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -772,11 +774,13 @@ jobs:
       nodePool: cus_x86_u16_01
     steps:
       - IN: cus_x86_ubuntu1604_01
+      - IN: x86_u1604_state
       - TASK:
           name: default_image_task_with_error
           script:
             - uname -a
             - foobaaaaar will fail on the host
+      - OUT: x86_u1604_state
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -792,6 +796,7 @@ jobs:
       container: false
     steps:
       - IN: sample_python_runCI
+      - IN: x86_u1604_state
       - TASK:
           name: host_task
           script:
@@ -807,6 +812,7 @@ jobs:
           script:
             - uname -a
             - env | grep CUSTOM
+      - OUT: x86_u1604_state
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -822,11 +828,13 @@ jobs:
       container: false
     steps:
       - IN: cus_x86_ubuntu1604_03
+      - IN: x86_u1604_state
       - TASK:
           name: host_task_with_error
           script:
             - uname -a
             - foob baaaaar will fail on the host
+      - OUT: x86_u1604_state
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -841,6 +849,7 @@ jobs:
       nodePool: cus_x86_u16_01
     steps:
       - IN: cus_x86_ubuntu1604_01
+      - IN: x86_u1604_state
       - TASK:
           name: custom_task_image
           runtime:
@@ -862,6 +871,7 @@ jobs:
             - uname -a
             - docker images
             - env | grep CUSTOM
+      - OUT: x86_u1604_state
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -875,6 +885,7 @@ jobs:
       nodePool: cus_x86_u16_01
     steps:
       - IN: cus_x86_ubuntu1604_05
+      - IN: x86_u1604_state
       - TASK:
           name: custom_image_task_with_error
           runtime:
@@ -884,6 +895,7 @@ jobs:
             - uname -a
             - docker images
             - foobar this should fail
+      - OUT: x86_u1604_state
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -899,6 +911,7 @@ jobs:
       timeoutMinutes: 1
     steps:
       - IN: cus_x86_ubuntu1604_01
+      - IN: x86_u1604_state
       - TASK:
           name: long_running_task
           script:
@@ -906,6 +919,7 @@ jobs:
             - df -h
             - sudo docker images
             - sleep 360
+      - OUT: x86_u1604_state
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -922,6 +936,7 @@ jobs:
       container: false
     steps:
       - IN: cus_x86_ubuntu1604_03
+      - IN: x86_u1604_state
       - TASK:
           name: long_running_task_on_host
           script:
@@ -929,6 +944,7 @@ jobs:
             - df -h
             - sudo docker images
             - sleep 360
+      - OUT: x86_u1604_state
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -944,6 +960,7 @@ jobs:
       timeoutMinutes: 1
     steps:
       - IN: cus_x86_ubuntu1604_05
+      - IN: x86_u1604_state
       - TASK:
           name: custom_task_image
           runtime:
@@ -953,6 +970,7 @@ jobs:
             - uname -a
             - docker images
             - sleep 360
+      - OUT: x86_u1604_state
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -967,6 +985,7 @@ jobs:
       nodePool: cus_x86_u16_01
     steps:
       - IN: cus_x86_ubuntu1604_01
+      - IN: x86_u1604_state
       - TASK:
           name: check_shared_dir
           script:
@@ -979,6 +998,7 @@ jobs:
           name: read_shared
           script:
             - cat $SHARED_DIR/shared_file.txt
+      - OUT: x86_u1604_state
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -995,6 +1015,7 @@ jobs:
       timeoutMinutes: 1
     steps:
       - IN: cus_x86_ubuntu1604_03
+      - IN: x86_u1604_state
       - TASK:
           name: check_shared_dir
           script:
@@ -1007,6 +1028,7 @@ jobs:
           name: read_shared
           script:
             - cat $SHARED_DIR/shared_file.txt
+      - OUT: x86_u1604_state
     on_success:
       - script: echo 'job succeeded'
     on_failure:
@@ -1023,6 +1045,7 @@ jobs:
       timeoutMinutes: 1
     steps:
       - IN: cus_x86_ubuntu1604_03
+      - IN: x86_u1604_state
       - TASK:
           name: check_shared_dir
           runtime:
@@ -1041,6 +1064,7 @@ jobs:
           name: read_shared
           script:
             - cat $SHARED_DIR/shared_file.txt
+      - OUT: x86_u1604_state
     on_success:
       - script: echo 'job succeeded'
     on_failure:
