@@ -55,6 +55,7 @@ jobs:
                 - CONTAINER_ENV4: VALUE4
               imageName: drydock/u14pytall
               imageTag: master
+              options: "-e FOO=foo -e BAR=bar"
           script:
             - echo "Checking container os version"
             - cat /etc/*-release
