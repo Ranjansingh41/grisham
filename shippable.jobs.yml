@@ -76,18 +76,11 @@ jobs:
             - cp -vr job_state.txt $BUILD_DIR/OUT/global_state/state/
       - OUT: global_state
     on_success:
-      - script:
-        - echo "successfully completed"
-        - echo "multiple lines can be executed in this block"
-        - ls -atlh
+      - script: echo "successfully completed"
+      - NOTIFY: slack
     on_failure:
-      - script:
-        - echo "Oops !!! something went wrong"
-        - echo "fix it and try again"
-    always:
-      - script:
-        - echo 'this will always run'
-        - echo 'hope everything went well'
+      - script: echo "Oops !!! something went wrong"
+      - NOTIFY: slack
     flags:
       - runSh
 
