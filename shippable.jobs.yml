@@ -80,12 +80,10 @@ jobs:
         - echo "successfully completed"
         - echo "multiple lines can be executed in this block"
         - ls -atlh
-      - NOTIFY: slack
     on_failure:
       - script:
         - echo "Oops !!! something went wrong"
         - echo "fix it and try again"
-      - NOTIFY: slack
     always:
       - script:
         - echo 'this will always run'
