@@ -1,8 +1,8 @@
-architecture: x86_64
-os: Ubuntu_16.04
-
 # Language setting
 language: python
+
+runtime:
+  nodePool: foobar
 
 # Version number
 python:
