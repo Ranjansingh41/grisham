@@ -1,6 +1,8 @@
 jobs:
   - name: non_grisham_job
     type: runSh
+    runtime:
+      nodePool: foobar
     steps:
       - IN: sample_python_runCI
       - IN: reg_dh_ric03uec
